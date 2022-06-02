@@ -16,6 +16,7 @@ const api = axios.create({
 export class FirestoreService {
   constructor( private firestore: AngularFireDatabase, private authService: AuthService) {}
 
+  //loguin
   Loguin(payload:any){
     return api.post(`api/auth/signin`, payload);
   }
@@ -25,6 +26,7 @@ export class FirestoreService {
     return api.post(`api/auth/signup`, payload);
   }
 
+  //zonas
   getZonas(headerGroup:any){
     return api.get(`api/zona`, { headers: headerGroup });
   }
@@ -33,10 +35,15 @@ export class FirestoreService {
     return api.post(`api/zona`,payload, { headers: headerGroup });
   }
 
+  deleteZona(id:any, headerGroup:any){
+    return api.delete(`api/zona/`+id, { headers: headerGroup });
+  }
+
   getZonaId(id:any, headerGroup:any){
     return api.get(`api/zona/`+id, { headers: headerGroup });
   }
-  
+
+  //Plaga
   postPlaga(payload:any, headerGroup:any){
     return api.post(`api/plaga`,payload, { headers: headerGroup });
   }
@@ -47,6 +54,10 @@ export class FirestoreService {
 
   getPlagaId(id:any, headerGroup:any){
     return api.get(`api/plaga/`+id, { headers: headerGroup });
+  }
+
+  deletePlaga(id:any, headerGroup:any){
+    return api.delete(`api/plaga/`+id, { headers: headerGroup });
   }
 
 }

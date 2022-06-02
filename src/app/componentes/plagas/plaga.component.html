@@ -38,7 +38,7 @@
 
                     <th pSortableColumn="price">nombre de la plaga<p-sortIcon field="price"></p-sortIcon>
                     </th>
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-plaga>
@@ -48,6 +48,12 @@
                     </td>
                     <td>{{plaga.id_plaga}}</td>
                     <td>{{plaga.nombre_plaga}}</td>
+                    
+                    <td>
+                        
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteZona(plaga.id_plaga)"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
@@ -80,3 +86,6 @@
     </div>
 </div>
 <p-toast></p-toast>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+    Content
+</p-confirmDialog>

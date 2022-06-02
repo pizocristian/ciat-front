@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../../services/apiService/api.service';
-import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -48,7 +48,7 @@ export class SettingComponent implements OnInit {
 
 
 
-  constructor(private messageService: MessageService, private firestoreService: FirestoreService, private firebaseStorage: FirebaseStorageService) {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private firestoreService: FirestoreService, private firebaseStorage: FirebaseStorageService) {
 
     this.obtenerPlaga();
 
@@ -65,7 +65,7 @@ export class SettingComponent implements OnInit {
       this.plaga = res.data;    
      
     });
-    console.log(this.plaga);
+    
 
   }
 
@@ -150,7 +150,7 @@ export class SettingComponent implements OnInit {
   savePlaga() {
     var plaga = {
       id_plaga: 0,
-      nombre: this.nombre
+      nombre_plaga: this.nombre
     }
     
 const cookies = new Cookies();
@@ -163,10 +163,30 @@ const cookies = new Cookies();
       this.productDialog = false;
       this.nombre = '';
       this.messageService.add({ severity: 'success', summary: 'Genial', detail: 'Se creo la plaga exitosamente', life: 5000  });
-     
+      this.obtenerPlaga();
     });
 
   }
+
+  deleteZona(id: any) {
+   
+    this.confirmationService.confirm({
+        message: 'Tu quieres elinar la plaga?',
+        accept: () => {
+          const cookies = new Cookies();
+          const headers = {
+            authorization: 'Bearer ' + cookies.get('token')
+          }
+          this.firestoreService.deletePlaga(id, headers).then(res => {
+            this.messageService.add({ severity: 'success', summary: 'Genial', detail: 'Se elimino la plaga exitosamente', life: 5000 });
+            this.obtenerPlaga();
+      
+          }).catch(err => {
+            this.messageService.add({ severity: 'warn', summary: 'Genial', detail: 'Error al eliminar la plaga', life: 5000 });
+          })
+        }
+    });
+}
 
 }
 

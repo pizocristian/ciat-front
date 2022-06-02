@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../../services/apiService/api.service';
-import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -46,13 +46,13 @@ export class OrdersComponent implements OnInit {
 
   iconos: any;
   icono: any;
-  plaga:any;
+  plaga: any;
   plagas: any[] = [];
   zonas: any;
 
 
 
-  constructor(private messageService: MessageService, private firestoreService: FirestoreService, private firebaseStorage: FirebaseStorageService) {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private firestoreService: FirestoreService, private firebaseStorage: FirebaseStorageService) {
 
     this.obtenerZona();
     this.obtenerPlaga();
@@ -69,7 +69,7 @@ export class OrdersComponent implements OnInit {
       this.zonas = res.data;
 
     });
-  
+
 
   }
 
@@ -83,11 +83,11 @@ export class OrdersComponent implements OnInit {
       var contenedorPlaga = res.data;
 
       contenedorPlaga.forEach((data: any) => {
-        this.plagas.push({"name":''+data.nombre_plaga+'',"code":''+data.id_plaga+''});
+        this.plagas.push({ "name": '' + data.nombre_plaga + '', "code": '' + data.id_plaga + '' });
       })
 
     });
-    
+
 
   }
 
@@ -152,10 +152,7 @@ export class OrdersComponent implements OnInit {
   }
 
   openNew() {
-    this.product = {
-      id: this.products.length + 1, category: '', code: this.products.length + 1, description: '', image: '', inventoryStatus: 'DISPONIBLE',
-      longDescription: '', name: '', price: 0, quantity: 0, rating: 5, tallas: ''
-    };
+
     this.submitted = false;
     this.productDialog = true;
   }
@@ -163,15 +160,35 @@ export class OrdersComponent implements OnInit {
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
-    this.product = {
-      id: 0, category: '', code: 0, description: '', image: '', inventoryStatus: 'DISPONIBLE',
-      longDescription: '', name: '', price: 0, quantity: 0, rating: 5, tallas: ''
-    };
+
   }
+
+  deleteZona(id: any) {
+   
+      this.confirmationService.confirm({
+          message: 'Tu quieres elinar la zona?',
+          accept: () => {
+            const cookies = new Cookies();
+            const headers = {
+              authorization: 'Bearer ' + cookies.get('token')
+            }
+            this.firestoreService.deleteZona(id, headers).then(res => {
+              this.messageService.add({ severity: 'success', summary: 'Genial', detail: 'Se elimino la zona exitosamente', life: 5000 });
+              this.obtenerZona();
+        
+            }).catch(err => {
+              this.messageService.add({ severity: 'warn', summary: 'Genial', detail: 'Error al eliminar la zona', life: 5000 });
+            })
+          }
+      });
+  }
+
+
+
 
   saveZona() {
     var zona = {
-      cantidad_palmas:  this.cantidad,
+      cantidad_palmas: this.cantidad,
       id_plaga: this.plaga.code,
       id_zona: 0,
       nombre_zona: this.nombre,
