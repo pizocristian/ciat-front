@@ -1,0 +1,27 @@
+<div class="ml-8 pt-8">
+    <p class="text-5xl">Lista de Zonas</p>
+    <p>Administre a detalle todas las zonas</p>
+</div>
+
+<div class="card-deck-container w-11 m-auto mt-2">
+    <p-orderList [value]="zonas" [listStyle]="{'max-height':'30rem'}" header="Lista de Pedidos" class="w-full" >
+        <ng-template let-product pTemplate="item">
+            <div class="product-item" [routerLink]="['/home/details', product.id_zona]">
+                <div class="image-container">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/personal-7dbd2.appspot.com/o/agrotendencia-agropedia-cultivo-de-coco-7.jpg?alt=media&token=86173f2e-05dd-48ac-a850-904d458c58cf" [alt]="product.name" class="product-image" />
+                </div>
+                <div class="product-list-detail">
+                    <h5 class="p-mb-2">Zona {{product.nombre}}</h5>
+                   
+                    <span class="product-category">Cantidad de palmas {{product.cantidad_palmas}}</span>
+                </div>
+                <div class="product-list-action">
+                    <h6 class="p-mb-2">{{product.nombre_plaga}}</h6>
+                    <div class="bg-yellow-100" >
+                        <p class=" text-yellow-500 ">{{product.nombre_plaga}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-orderList>
+    </div>

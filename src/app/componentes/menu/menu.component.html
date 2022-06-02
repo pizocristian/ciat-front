@@ -1,0 +1,60 @@
+
+<body>
+    
+<div id="sidemenu" class="menu-collapsed">
+
+	<div id="header">
+		<div id="title"><span>Ciat</span></div>
+		
+	</div>
+
+	<div id="profile">
+		<div id="photo"><img src="https://firebasestorage.googleapis.com/v0/b/personal-7dbd2.appspot.com/o/logo-ciat-1000x1000.jpg?alt=media&token=0edb2412-19c9-42a8-8aff-b33c94d61fad" alt=""></div>
+
+		<div id="name"><span>Ciat test</span></div>
+	</div>
+
+	<div id="menu-items">
+		<div class="item">
+			<a routerLink="/home/cultivos">
+				<div class="icon"><img style="width: 30px" src="https://firebasestorage.googleapis.com/v0/b/personal-7dbd2.appspot.com/o/aceite-de-palma.png?alt=media&token=6f37914e-2937-4cef-8e89-a36fe197666f" alt=""></div>
+				<div class="title"><span>Cultivos de coco</span></div>
+			</a>
+		</div>
+		<div class="item">
+			<a routerLink="/home/zonas">
+				<div class="icon"><img style="width: 30px" src="https://firebasestorage.googleapis.com/v0/b/personal-7dbd2.appspot.com/o/mapa.png?alt=media&token=c0528314-5364-44dc-a851-2ee766a83651" alt=""></div>
+				<div class="title"><span>Zonas</span></div>
+			</a>
+		</div>
+		<div class="item">
+			<a routerLink="/home/plagas">
+				<div class="icon"><img style="width: 30px" src="https://firebasestorage.googleapis.com/v0/b/personal-7dbd2.appspot.com/o/plagas.png?alt=media&token=12e14500-5c68-4e48-b195-3da4b2e6f1ec" alt=""></div>
+				<div class="title"><span>Plagas</span></div>
+			</a>
+		</div>
+        <div class="item separator">
+			
+		</div>
+        <div class="item">
+			<a href="https://api.whatsapp.com/send?phone=573152047381&text=Hola,%20requiero%20ayuda%20con" target="blank">
+				<div class="icon"><img style="width: 30px" src="https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/puntocomercio%2Ficonos%2Fapoyo-tecnico.png?alt=media&token=147575b8-ffce-4311-b4ef-2572dbfa5f8e" alt=""></div>
+				<div class="title"><span>Soporte</span></div>
+			</a>
+		</div>
+		<div class="item">
+			<a (click)="cerrarSession()">
+				<div class="icon"><img style="width: 30px" src="https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/puntocomercio%2Ficonos%2Fapagar.png?alt=media&token=73257a0f-17f8-4f16-aaba-67c72e09535e" alt=""></div>
+				<div class="title"><span>cerrar sesion</span></div>
+			</a>
+		</div>
+	</div>
+
+</div>
+
+<div id="main-container">
+	<router-outlet></router-outlet>
+</div>
+<!-- <router-outlet></router-outlet> -->
+
+</body>

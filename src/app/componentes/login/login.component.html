@@ -1,0 +1,17 @@
+<div class="container2">
+  <div class="left">
+    <div class="header">
+      <h2 class="animation a1">Bienvenido a Salvemos las palmas</h2>
+      <h4 class="animation a2">Programa para identificar las plagas en el cultivo del coco</h4>
+    </div>
+    <div class="form">
+      <input type="email" class="form-field animation a3" placeholder="Correo" [(ngModel)]="usuario.username">
+      <input type="password" class="form-field animation a4" placeholder="contraseña" [(ngModel)]="usuario.password">
+      <p class="animation a5"><a href="#">Recuperar contraseña</a></p>
+      <button class="animation a6" (click)="Loguearse()">Ingresar</button>
+      <button class="animation a6" routerLink="/registrarse">Registrarse</button>
+    </div>
+  </div>
+  <div class="right"></div>
+</div>
+

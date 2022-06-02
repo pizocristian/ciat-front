@@ -1,0 +1,98 @@
+<div class="ml-8 pt-8">
+    <p class="text-5xl">Zonas</p>
+    <p>Administre las zonas que pueden estar afectadas por plagas</p>
+</div>
+<div class="flex justify-content-center flex-wrap card-container">
+    <div class="card w-11  justify-content-center m-auto mt-4 mb-8">
+
+        <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2"
+                    (click)="openNew()"></button>
+            </ng-template>
+
+        </p-toolbar>
+
+        <p-table [value]="zonas" responsiveLayout="scroll" [rows]="5" [paginator]="true"
+            [globalFilterFields]="['name','country.name','representative.name','status']" [rowHover]="true" dataKey="id"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    <h5 class="m-0">Administrar Plagas</h5>
+                    <span class="p-input-icon-left">
+
+                        <input pInputText type="text" placeholder="Search..." />
+                    </span>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="name">Id <p-sortIcon field="name"></p-sortIcon>
+                    </th>
+
+                    <th pSortableColumn="price">nombre de la zona<p-sortIcon field="price"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="price">Cantidad de palmas<p-sortIcon field="price"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="price">Plaga<p-sortIcon field="price"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-plaga>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="plaga"></p-tableCheckbox>
+                    </td>
+                    <td>{{plaga.id_zona}}</td>
+                    <td>{{plaga.nombre_zona}}</td>
+                    <td>{{plaga.cantidad_palmas}}</td>
+                    <td>{{plaga.nombre_plaga}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Administrar tus zonas" [modal]="true"
+            styleClass="p-fluid">
+            <ng-template pTemplate="content">
+                
+                <div class="p-field">
+                    <label for="name">Nombre de la zona</label>
+                    <input type="text" [(ngModel)]="nombre" pInputText />
+                </div>
+                <div class="p-field mt-4">
+                    <label for="name">Plagas</label>
+                    <p-dropdown [options]="plagas" [(ngModel)]="plaga" [placeholder]="plaga"  optionLabel="name"></p-dropdown>
+                </div>
+                <div class="p-field mt-6 mb-3">
+                    <label for="name">Cantidad de palmas</label>
+                    <input type="number" [(ngModel)]="cantidad" pInputText />
+                </div>
+
+                
+
+
+
+
+
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+                    (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" *ngIf="!finalizado" icon="pi pi-check" class="p-button-text"
+                    (click)="saveZona()"></button>
+                <p-progressSpinner *ngIf="finalizado" [style]="{width: '50px', height: '50px'}"
+                    styleClass="custom-spinner" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s">
+                </p-progressSpinner>
+            </ng-template>
+        </p-dialog>
+
+    </div>
+</div>
+<p-toast></p-toast>

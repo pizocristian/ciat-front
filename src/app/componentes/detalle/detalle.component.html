@@ -1,0 +1,63 @@
+<button class="pl-8" style="display: relative; margin-top: 20px; margin-left:20px;" routerLink="/home/cultivos" pButton pRipple
+    type="button" label="Volver" class="p-button-outlined p-button-rounded" icon="pi pi-angle-left"></button>
+
+<div class="px-4 py-5 md:px-6 lg:px-8">
+    <div class="grid pt-8">
+        <div class="col-12 md:col-6 lg:col-3 ">
+            <div class="surface-card shadow-2 p-3 border-round">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-500 font-medium mb-3">Nombre de la zona</span>
+                        <div class="text-900 font-medium text-xl">{{zona.nombre_zona}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-compass text-blue-500 text-xl"></i>
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="surface-card shadow-2 p-3 border-round">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-500 font-medium mb-3">Cantidad de Palmas</span>
+                        <div class="text-900 font-medium text-xl">{{zona.cantidad_palmas}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="surface-card shadow-2 p-3 border-round">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-500 font-medium mb-3">Nombre de la plaga</span>
+                        <div class="text-900 font-medium text-xl">{{zona.nombre_plaga}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-times-circle text-cyan-500 text-xl"></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="surface-card shadow-2 p-3 border-round">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-500 font-medium mb-3">Cantidad de zonas afectadas</span>
+                        <div class="text-900 font-medium text-xl">{{cantidad}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-comment text-purple-500 text-xl"></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
